@@ -1,0 +1,50 @@
+repos:
+
+  # ----------------------------------------------------------------------------
+  # Remote
+
+  - repo: https://github.com/pre-commit/pre-commit-hooks
+    rev: "v4.2.0"
+    hooks:
+      - id: check-ast
+      - id: check-executables-have-shebangs
+      - id: check-merge-conflict
+      - id: end-of-file-fixer
+      - id: fix-byte-order-marker
+      - id: trailing-whitespace
+
+  # ----------------------------------------------------------------------------
+  # Local
+
+  - repo: local
+    hooks:
+      - id: black
+        name: black
+        language: system
+        entry: poetry run black
+        require_serial: true
+        types: [python]
+
+      - id: isort
+        name: isort
+        language: system
+        entry: poetry run isort
+        require_serial: true
+        types: [python]
+
+      - id: requirements
+        name: requirements
+        language: system
+        entry: >-
+          poetry export
+          --format "requirements.txt"
+          --output "requirements.txt"
+        pass_filenames: false
+        files: ^poetry\.lock$
+
+  # ----------------------------------------------------------------------------
+
+exclude: |
+  (?x)(
+    ^CHANGELOG.md$
+  )

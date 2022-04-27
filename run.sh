@@ -36,26 +36,6 @@ function _requirements {
 }
 
 # ==============================================================================
-# Format
-
-function _format_style {
-    echo "Format style"
-
-    poetry run black .    
-}
-
-function _format_imports {
-    echo "Format imports"
-
-    poetry run isort --profile black .
-}
-
-function _format {
-    _format_style
-    _format_imports
-}
-
-# ==============================================================================
 # Test
 
 function _test_not_slow {
@@ -66,7 +46,7 @@ function _test_not_slow {
 
 function _test_slow {
     echo "Run slow tests with Pytest"
-    
+
     poetry run pytest -m "slow" --cov-append --cov=./ --cov-report=xml
 }
 
