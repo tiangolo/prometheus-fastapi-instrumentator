@@ -14,16 +14,18 @@ pre-commit install --install-hooks
 pre-commit install --hook-type commit-msg
 ```
 
-It should automatically run on every commit. It is also run as part of the
-CI/CD pipeline.
+Pre-commit should now run automatically on every commit. It is also executed via
+GitHub Actions and the respective pipelines should fail on hook fails.
 
-Configured via [`../.pre-commit-config.yaml`](../.pre-commit-config.yaml).
+Pre-commit is configured via
+[`../.pre-commit-config.yaml`](../.pre-commit-config.yaml).
 
-Note that most hooks in the config are of the local type. This allows us to
+Note that many hooks in the config are of the local type. This allows us to
 manage dependencies like `black` with Poetry while also using them from
 pre-commit.
 
-Here are a few commonly used commands around pre-commit.
+Here are a few commonly used commands. Note that you must prefix these commands
+with `poetry run` if you aren't in a Poetry shell with `poetry shell`.
 
 ```sh
 # Run pre-commit against all files.
